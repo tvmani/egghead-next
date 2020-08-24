@@ -1,0 +1,139 @@
+## egghead next
+
+egghead.io was originally built as a rails app with all the views rendered using rails controllers. egghead next splits the responsibilites:
+
+- Backend: continue using rails with GraphQL queries providing data
+- Frontend: Using [Next.js](https://nextjs.org/) for Components, Layouts, Navigation, and Architecture
+
+## Pre-Requisites
+
+- [node.js](https://nodejs.org/)
+- [yarn](https://yarnpkg.com/)
+- [git](https://git-scm.com/)
+
+## Setup
+
+1. Git clone [eggheadio/egghead-next: This is a "proof of concept" for using Next.js as the next iteration of the frontend for egghead.io.](https://github.com/eggheadio/egghead-next)
+2. cd `egghead-next` and run `yarn`
+3. Run `yarn dev` to launch the project
+4. Project should be running on `http://localhost:3000`
+
+<!-- TODO: Should we be using a different dev URL? -->
+
+## Layout
+
+- `src/pages/_document.tsx`
+  - Defines the Root of the HTML page and where Next.js is rendered
+- `src/pages/_app.tsx`
+  - SEO
+  - Social
+  - AppLayout
+  - "Viewer" context
+  - MDX Providers
+  - Cache Providers
+- ## `src/components/app/Layout.tsx` AKA the `<AppLayout>`
+  - Header
+  - Main
+  - Footer
+
+## Assets
+
+Place static assets in the `public` directory.
+
+## Navigation and URLs
+
+### Static URLs
+
+The `pages` directory contains named directories and files that determine URLs.
+
+- `src/pages/instructors/index.tsx` will render to the URL of `egghead.io/instructors`.
+
+### Dynamic URLs
+
+Inside the pages directory, files following the naming pattern of `[slug].tsx` and similar, will take any URLs path and pass the path as a `slug` variable.
+
+- `egghead.io/instructors/john-lindquist` will pass a param variable of `john-lindquist` to `src/pages/instructors/[slug].tsx`. You can access the slug variable off the `params` passed to the static methods:
+
+```javascript
+export async function getServerSideProps({res, params}) {
+  const instructorData = await loadInstructor(params.slug)
+```
+
+## Search
+
+Our search is powered by [algolia](https://www.algolia.com/).
+
+`src/pages/search` contains the search UI. The UI is powered by the [react-instantsearch-dom](https://www.npmjs.com/package/react-instantsearch-dom) component.
+
+### Generated Search URLs
+
+`src/lib/search-url-builder.ts` builds URLs based on seach queries and reults from [algolia](https://www.algolia.com/). This enables custom URLs that we can serve based on users specific requests. This is fantastic for SEO.
+
+## SEO
+
+- `src/next-seo.json` configures the main SEO options.
+<!-- TODO: Update this once sitemap.xml is implemented -->
+- The `sitemap.xml` will be generated from the `pages` directory and GraphQL queries
+
+## Components
+
+### Using Components in MDX
+
+Define MDX components in `src/components/mdx/index.ts`. Exporting these components will make them available to `src/pages/_app.tsx` which pass them along to the `MDXProvider`.
+
+### SVG
+
+SVG are defined in files inside of the `src/components/images` directory. They can be loaded as components directly thanks to the [next-svgr](https://www.npmjs.com/package/next-svgr) plugin.
+
+### Video Player
+
+<!-- TODO: Talk with Joel for writing docs -->
+
+## Data
+
+The previous version of egghead lives on at `https://app.egghead.io/`. That app provides the GraphQL API at `https://app.egghead.io/graphql`.
+
+We use the [graphql-request](https://github.com/prisma-labs/graphql-request) library to make requests to the API. The files in `src/lib` will show you many examples of how this is done.
+
+- Define and export a method using `graphql-request` in a `src/lib` file, e.g., `loadInstructors`:
+- Import `loadInstructors` into your page's static methods, e.g., `getServerSideProps`
+- `await` the result and return an object containing the result which will then be passed on to the page's props.
+
+## Styling
+
+`Next.js` supports [PostCSS](https://postcss.org/) by default. Customize `PostCSS` options in the `postcss.config.js` file.
+
+### Tailwind
+
+The [tailwind](https://tailwindcss.com/) plugin is included in the `postcss.config.js` file which enables us to load in tailwind utilities into the `index.css` file. Define custom classes in the `index.css` file which can be used throughout all of the pages.
+
+Customize the options for `Tailwind` in the `tailwind.config.js` file. Please note that the `purge` options will seek for classes used in the listed file globs and remove any classes is doesn't find.
+
+## Authentication
+
+<!-- TODO: Pair on this with Joel -->
+
+## MDX
+
+<!-- TODO: Decided if we need to move completely to `next-mdx-remote`. -->
+
+## Testing
+
+Run `yarn test` to kickoff the [jest](https://jestjs.io/) tests. The tests are written with [testing-library](https://testing-library.com/)
+
+Add a to a nested `__tests__` directory to write your tests, e.g., `src/lib/__tests__`
+
+## e2e Testing
+
+Run `yarn e2e` to kickoff the [Cypress](https://www.cypress.io/) tests.
+
+The `cypress` directory includes all of the configuration and tests. The `cypress` directory follows the default configuraion recommended by `Cypress`.
+
+## Continuous Integration
+
+Opening a Pull Request will kickoff:
+
+- The build on our egghead [vercel](https://vercel.com/) account
+- [Github Actions](https://github.com/features/actions) defined in `.github/ci.yml`.
+
+If the build passes, then the Github Action runs the Cypress tests. If the Cypress tests pass, then a reviewer can than accept the pull request and merge it into the `main` branch on Github.
