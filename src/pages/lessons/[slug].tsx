@@ -10,6 +10,7 @@ import playerMachine from 'machines/lesson-player-machine'
 import EggheadPlayer from 'components/EggheadPlayer'
 import LessonInfo from 'components/pages/lessons/LessonInfo'
 import Transcript from 'components/pages/lessons/Transcript'
+import Quiz from 'components/pages/lessons/Quiz'
 import {loadLesson} from 'lib/lessons'
 import {useViewer} from 'context/viewer-context'
 import {LessonResource} from 'types'
@@ -261,6 +262,7 @@ const Lesson: FunctionComponent<LessonProps> = ({initialLesson}) => {
           </div>
         </div>
         <div>
+          <Quiz slug={slug} />
           <div className="grid gap-8 md:grid-cols-12 grid-cols-1 max-w-screen-xl mx-auto divide-y md:divide-transparent divide-gray-50">
             <div className="md:col-span-8 md:row-start-1 row-start-2">
               <Tabs>
