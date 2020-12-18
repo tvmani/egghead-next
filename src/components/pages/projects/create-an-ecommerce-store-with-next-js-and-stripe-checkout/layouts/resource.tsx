@@ -143,7 +143,7 @@ const ResourceLayout: FunctionComponent<ResourceLayoutProps> = ({
                       className="prose sm:prose-lg max-w-none"
                       player={playerRef}
                       playerAvailable={true}
-                      transcriptUrl={meta.transcript_url}
+                      enhancedTranscript={meta.transcrpt_url}
                       initialTranscript={meta.transcript}
                     />
                   </>
