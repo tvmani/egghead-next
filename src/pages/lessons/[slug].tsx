@@ -269,7 +269,7 @@ const Lesson: FunctionComponent<LessonProps> = ({initialLesson}) => {
                   className="text-lg font-semibold"
                 >
                   {transcriptAvailable && <Tab>Transcript</Tab>}
-                  <Tab>Comments</Tab>
+                  {/* <Tab>Comments</Tab> */}
                 </TabList>
                 <TabPanels className="mt-6">
                   {transcriptAvailable && (
@@ -284,9 +284,9 @@ const Lesson: FunctionComponent<LessonProps> = ({initialLesson}) => {
                       />
                     </TabPanel>
                   )}
-                  <TabPanel>
+                  {/* <TabPanel>
                     <p>Comments</p>
-                  </TabPanel>
+                  </TabPanel> */}
                 </TabPanels>
               </Tabs>
             </div>
