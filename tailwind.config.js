@@ -7,6 +7,7 @@ module.exports = {
     './pages/**/*.js',
     './pages/**/*.tsx',
     './pages/**/*.mdx',
+    './pages/projects/**/*.mdx',
     './components/**/*.mdx',
     './src/**/*.tsx',
   ],
