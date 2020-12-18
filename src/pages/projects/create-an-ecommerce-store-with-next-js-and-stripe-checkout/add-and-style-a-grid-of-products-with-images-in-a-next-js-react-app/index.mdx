@@ -1,0 +1,135 @@
+export const meta = {
+  title: `Add and Style a Grid of Products with Images in a Next.js React App`,
+  transcript: `Colby Fayock: [0:00] We're going to start off with the new Next.js app, where I've updated the title in the description to my Space Jelly Shop. Inside our code, we can see that it pretty much looks exactly the same as a create Next.js app except we updated the titles. Our goal is to create an online store, where we can sell products.\n\n[0:13] The first thing we want to do is actually add the products. For an easy way to get started, we can simply reuse these cards that already exists to add our products. For my store, I have three products that I want to add -- a T-shirt, a set of stickers, and a combo pack that includes both the T-shirt and stickers.\n\n[0:27] In my code, I'm going to find that first card. I'm going to replace documentation with the title. I'm also going to replace the paragraph tag with my description. I also went ahead and did the same thing for the next two cards in the list, but since we only have three products and we have four cards, we can go ahead and get rid of the last one.\n\n[0:41] If we look at the app, we can see that it's already updated with our product information. Part of what really sells products is being able to show an image of it, so people know what they're buying. Let's add images to each one of these cards.\n\n[0:52] To prepare to add the images to the project, I added three image files directly to my public folder including the combo, the stickers, and the T-shirt.\n\n[1:00] Because we made that available inside of our public directory, that means that we can access those images statically as /images and the file name. Inside of my first card, I'm going to create a new img tag and I'm going to reference that first image with /images spacejellytshirt.jpg. I'm also going to set an alternate tag of Space Jelly T-shirt, close that tag.\n\n[1:21] If we look at the browser, we can already see that our image is inside the app, but it's huge. By default, Next.js doesn't have any styles included that prevents images from growing beyond their container.\n\n[1:30] To prevent this, I'm going to open up my globals.css file. In the bottom, I'm going to add image max-width = 100 percent. Now, if we look at the app, we can see that the image looks a little bit better. Back inside my code, I added images to the next two product cards, and we can see that those, load as well.\n\n[1:45] Finally, when we're showing our products in our shop, we're actually showing a list of products. In the code, we're currently using a div for the grid and a couple anchor tags for the products. While that works, it's probably more semantic and accessible to use something like an unordered list, so that we're using a list element for our HTML.\n\n[2:02] We can pretty easily update that by first changing the div to an unordered list. For each of our cards, I'm going to create a list element that's going to wrap each of those anchor tags. To make sure that our cards are still styled properly, we can move this class name prop from each of those anchor tags to our list element.\n\n[2:19] Once we do the same thing for each of our cards, we can see that the page updated but it's not quite right anymore. To start, we need to remove the default styles for our list element. If we open up our home.module.css file, we can start by on our grid, we can add list style = none. That will get rid of the bullets next to each item.\n\n[2:36] Next, these are probably too big, and we don't want them in a single column. We also want to make sure that any time we have this percentage value, it's going to take into consideration the margin on each of the sides. Let's change this 45 percent to calc 50 percent, so that we have two columns minus two rem, which includes the margin on each side of the product.\n\n[2:55] Now, if we open our browser, we can see that we're back to two columns. Because we have a wider screen here, we might want our products to be wider, and have three columns when it's that size.\n\n[3:04] To solve that, we can add a new media query. We're going to type out, media, we're going to say min-width, let's say 960 pixels. Inside that, we're going to define the card class. We're going to say flex-basis, let's say calc 33.33 percent minus that same two rem.\n\n[3:23] We can immediately see that we're at three columns. It's a little squished. Let's widen that up a little bit. Since our grid is what's containing that size, let's set the max-width of our grid to 60em. When we open the page, we can see that it's nice and wide, and we can see all three products.\n\n[3:37] To see the effect of the two versus three columns depending on page size, we can first open up our Chrome DevTools, and we can change the size of this panel so that when it's below 960 pixels, we get two columns, but when it's back above 960 pixels, we have three columns.\n\n[3:53] Finally, if you noticed, each of our cards have a little bit different height and because of that, it doesn't look uniform across the top. You see a stagger effect. To fix that, we can update our align items to stretch. Now if we look back at our page, we can see that our cards are nice and uniform and the same size.\n\n[4:08] In review, we took our store, we added some products. We also made sure that each of those products inside of the cards take advantage of the size of the screen.\n\n[4:16] We were able to do that by first, updating the product and information for each of the cards as well as adding an image, and then updating our div to an unordered list with each list element.\n\n[4:25] With a few tweaks to our pre-existing styles, including a media query, we have our shop with our product cards.`,
+  transcript_url: `https://egghead.io/api/v1/lessons/next-js-add-and-style-a-grid-of-products-with-images-in-a-next-js-react-app/transcript`,
+  media_urls: {
+    hls_url:
+      'https://d2c5owlt6rorc3.cloudfront.net/next-js-add-and-style-a-grid-of-products-with-images-in-a-next-js-react-app-fc2UL40t6/hls/next-js-add-and-style-a-grid-of-products-with-images-in-a-next-js-react-app-fc2UL40t6.m3u8',
+    dash_url:
+      'https://d2c5owlt6rorc3.cloudfront.net/next-js-add-and-style-a-grid-of-products-with-images-in-a-next-js-react-app-fc2UL40t6/dash/next-js-add-and-style-a-grid-of-products-with-images-in-a-next-js-react-app-fc2UL40t6.mpd',
+  },
+  next: {
+    title:
+      'Add and Configure Products in the Stripe Dashboard for an Online Store',
+    slug:
+      'add-and-configure-products-in-the-stripe-dashboard-for-an-online-store',
+    path:
+      '/projects/create-an-ecommerce-store-with-next-js-and-stripe-checkout/add-and-configure-products-in-the-stripe-dashboard-for-an-online-store',
+  },
+}
+
+The core of any shopping experience is simply being able to see what the store has to offer! This includes what products are available and how much each one of them costs.
+
+While we can do this in a variety of ways, a common way is to show a grid of products where we can see everything the store has to offer (or a lot of it). Using some HTML and CSS, we can create our product grid allowing our customers a look into our store.
+
+## Getting Started
+
+For our second lesson, we're going to put together a product grid using some HTML and CSS.
+
+We'll start off by updating the default Next.js template to include our products instead of links to the Next.js docs. Then, we'll import some images for our products that will already be available in this lesson folder so we can show what our products look like. Finally, we'll make some basic CSS changes to the default Next.js template to make sure we're providing a good experience to our customers.
+
+## Objectives
+
+- Add products to the app
+- Import product images and add to each product
+- Update the default page styles
+
+## Exercises
+
+🕵️‍♂️ Use the `@lesson-02-todo` key to search for this lesson's assignments in the code!
+
+### 1. Add some products to the homepage of an online store [00:16](00:16)
+
+To get started adding our products to the app, we can take advantage of the default grid that Next.js comes with out of the box on the homepage.
+
+The grid we'll use is already set up to use [flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox) that includes card-like components that contain information. So, we'll re-use those same cards to add our product information to our app.
+
+Update the cards on the homepage to include the title and description of each product.
+
+> 👋 **Hey! Quick Note**
+>
+> For this exercise you'll also want to think of some products that you'd like to add. If you want to follow along, you can use the following products:
+>
+> | Product Title        | Product Description                                                             |
+> | -------------------- | ------------------------------------------------------------------------------- |
+> | Space Jelly Tshirt   | Bring Cosmo the space Jellyfish to your wardrobe with this high quality tshirt. |
+> | Space Jelly Stickers | Add some flare to your laptop with a sticker of Cosmo the Space Jellyfish.      |
+> | Space Jelly Combo    | Show your love for Cosmo with a tshirt and sticker combo pack!                  |
+
+#### Where We'll Make Changes
+
+- `pages/index.js`
+
+### 2. Import local images into the app for each product [00:50](00:50)
+
+When shopping on the internet, believe it or not, people want to see what they're buying!
+
+That means, we can show big descriptive images so our customers know exactly what they're going to get when they make it to their home.
+
+Add an image above the title to each product card.
+
+> 👋 **Hey! Quick Note**
+>
+> For this exercise, similar to the last, you can follow along and use the images available inside of the `public/images` directory that correspond to each of the products described above.
+
+#### Where We'll Make Changes
+
+- `pages/index.js`
+
+### 3. Change the product grid into an unordered list for better accessibility [01:50](01:50)
+
+We want our websites to be accessible for all types of people. While it's someone may be able to figure out how to navigate around the project with the current HTML, it makes a little bit more sense to use the HTML list element, which would semanticaly describe our list of products.
+
+Update the grid to be an unordered list (`<ul>`) that includes each card as a list item (`<li>`).
+
+#### Where We'll Make Changes
+
+- `pages/index.js`
+
+### 4. Update the app styles for a better user experience
+
+Between the default styles of an unordered list and some of the styles that come along with the Next.js default template, the look and feel of our application could use a little attention to make it easier to read and use.
+
+Make some or all of the following changes to the product grid:
+
+- Prevent product images from growing beyond 100% of their container
+- Remove the list styling (bullets) of the unordered list
+- Remove the default padding of the unordered list
+- Update the product grid to display 3 columns when the window is over 960px wide
+- Remove the border, border radius, and hover effects of the cards
+- Add a shadow to the product image when hovering over a card
+- Whatever else you'd like!
+
+> 👋 **Hey! Quick Note**
+>
+> These styles won't persist to the next lesson, but this can be good practice to learn how to make CSS changes inside of a Next.js app.
+
+#### Where We'll Make Changes
+
+- `styles/Home.module.css`
+
+#### Resources
+
+- [Built-In CSS Support](https://nextjs.org/docs/basic-features/built-in-css-support) (nextjs.org)
+
+## Extra Credit
+
+### 1. Add the price of each product to the page
+
+Our page currently shows a list of our products, but there's one important thing missing--how much does it cost?
+
+Add the price of each item as another attribute on each product card.
+
+#### Where We'll Make Changes
+
+- `pages/index.js`
+
+import ResourceLayout from 'components/pages/projects/create-an-ecommerce-store-with-next-js-and-stripe-checkout/layouts/resource'
+
+export const Sidebar = () => <div />
+
+export default ({meta, children}) => (
+  <ResourceLayout meta={meta} sidebar={<Sidebar />}>
+    {children}
+  </ResourceLayout>
+)

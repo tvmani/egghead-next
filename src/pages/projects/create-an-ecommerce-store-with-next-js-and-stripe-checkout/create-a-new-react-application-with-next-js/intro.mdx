@@ -1,0 +1,66 @@
+export const meta = {
+  title: `Create a New React Application with Next.js`,
+  summary: `React is a powerful library that gives us the ability to build dynamic apps with the power of JavaScript and the browser. With it, we can personalize apps and add interactions that allow us to deliver a better user experience to our visitors.\n\nNext.js is a web framework that sits on top of React taking the power of React to another level. With it, we get additional data fetching utilities and site compilation that providers optimized builds with logical ways of managing our data.\n\nHow can we use these tools to build a dynamic web app?`,
+  next: {
+    label: 'View Solution →',
+    title:
+      'Add and Style a Grid of Products with Images in a Next.js React App',
+    slug: 'add-and-style-a-grid-of-products-with-images-in-a-next-js-react-app',
+    path:
+      '/projects/create-an-ecommerce-store-with-next-js-and-stripe-checkout/create-a-new-react-application-with-next-js/solution',
+  },
+}
+
+## Getting Started
+
+For our first lesson, we're going to walk through building a Next.js app from scratch.
+
+The best part of creating a Next.js app from scratch, is Next.js provides us with all of the tools we need to get up and running quickly with a single line in the terminal.
+
+## Exercises
+
+### 1. Creating a new Next.js app with Create Next App
+
+As you notice, this first lesson directory is empty. That's on purpose!
+
+Our very first exercise is creating a new Next.js app from scratch.
+
+To do this, Next.js provides an easy-to-use tool called Create Next App that we can run right from our terminal that creates a new project, installs the dependencies, and gets us up and running in no time.
+
+This tool uses npm or yarn to clone a repository and run any scripts that gets the project ready to use.
+
+#### Resources
+
+- [Create Next App](https://nextjs.org/docs/api-reference/create-next-app) (nextjs.org)
+
+### 2. Exploring our new Next.js app
+
+After Create Next App finishes running, we should now be ready to start up our local development server and Next.js provides us right away with the commands we should use.
+
+With our local development server up and running, we can get familiar with some of the features Next.js provides out of the box. This includes making changes to our code, such as changing the title of the page, and watching our app automatically update right inside of the browser.
+
+Take some time to look around the project files and Next.js documentation to get an idea of what you just created.
+
+#### Resources
+
+- [Getting Started - Next.js Docs](https://nextjs.org/docs/getting-started) (nextjs.org)
+
+import ResourceLayout from 'components/pages/projects/create-an-ecommerce-store-with-next-js-and-stripe-checkout/layouts/resource'
+
+export const Sidebar = () => (
+  <div>
+    <h4 className="font-bold text-lg">Objectives</h4>
+    <div className="prose leading-tight">
+      <ol>
+        <li>Create a new Next.js React application</li>
+        <li>Get familiar with the features of Next.js</li>
+      </ol>
+    </div>
+  </div>
+)
+
+export default ({meta, children}) => (
+  <ResourceLayout meta={meta} sidebar={<Sidebar />}>
+    {children}
+  </ResourceLayout>
+)

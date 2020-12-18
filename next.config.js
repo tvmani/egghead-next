@@ -7,12 +7,13 @@ const withImages = require('next-images')
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
   options: {
+    remarkPlugins: [require('remark-slug')],
     rehypePlugins: [
       [
         rehypeShiki,
         {
           theme: './src/styles/material-theme-dark.json',
-          useBackground: true,
+          useBackground: false,
         },
       ],
     ],
@@ -160,7 +161,6 @@ module.exports = withPlugins(
     withMDX({
       pageExtensions: ['ts', 'tsx', 'mdx'],
       remarkPlugins: [
-        require('remark-slug'),
         require('remark-footnotes'),
         require('remark-code-titles'),
       ],

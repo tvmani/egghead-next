@@ -1,0 +1,116 @@
+export const meta = {
+  title: `Add and Configure Products in the Stripe Dashboard for an Online Store`,
+  summary: `The core of any shopping experience is simply being able to see what the store has to offer! This includes what products are available and how much each one of them costs.\n\nWhile we can do this in a variety of ways, a common way is to show a grid of products where we can see everything the store has to offer (or a lot of it). Using some HTML and CSS, we can create our product grid allowing our customers a look into our store.\n\nThe default Next.js template has 'cards' that will serve us well in displaying the products that we want to sell. We will upgrade these cards to handle images and be positioned and styled to our liking.`,
+  transcript: `Instructor: [0:00] To manage our products and take payments, we're going to use Stripe. In order to get started with Stripe, we're going to need an account. I'm not going to walk you through that process, but you can sign up for free right on stripe.com. Once you sign up for Stripe, you're going to be dropped into the Stripe Dashboard.\n\n[0:12] If this is your first time seeing the Dashboard, there's a lot to see here. For our purpose though, we're going to go over to the Products section in the left sidebar. Once we're on that page, unless you've set up products before, you should see the dialog for adding a new product. Once we select that, we should see some product information fields where we're going to add each of our products.\n\n[0:29] For instance, we can add our first product, which is a Space Jelly T-shirt. Because the description is optional, we're just going to leave that off, so we don't have to manage it in two places. If we scroll down on this page, we can see that we hit the pricing section.\n\n[0:40] For our T-shirt, our pricing isn't going to be recurring. It's going to be a one time, so we're going to select the one-time field. For the price, we're going to enter in $20. For the pricing model, we're going to leave that at standard. Once we're happy with the price, we can hit Save product.\n\n[0:54] Now, we can see we created our first product. With our new product, we should immediately notice a few things. We can see the product ID, we can even see when it was created. If we scroll down, though, we can see where we set the price of $20 USD. We can see that that price has its own ID, which we'll use for later lessons.\n\n[1:09] One thing we didn't do when creating this product is add an image. Even though we've already created our product, we can go to the edit form, where we see the same product fields as we did before. Meaning, I now can click the Upload dialog, where I can find my images. Here is my Space Jelly T-shirt, I can select that, and that uploads my image to my product.\n\n[1:26] If I hit Save, I can save that product. We can now see that the product details includes the image. If we go back to the products list, we can go ahead and repeat that same process with each of our other products. Once I'm done, I have all three of my products right in Stripe.\n\n[1:39] To recap, we started off in our Stripe Dashboard. To manage our products, we found the Products section inside of that Dashboard. We then added each product where we can now manage and take payments for them in Stripe.`,
+  transcript_url: `https://egghead.io/api/v1/lessons/next-js-add-and-configure-products-in-the-stripe-dashboard-for-an-online-store/transcript`,
+  media_urls: {
+    hls_url:
+      'https://d2c5owlt6rorc3.cloudfront.net/egghead-add-and-configure-products-in-the-stripe-dashboard-for-an-online-store-ayqt2WDSr/hls/egghead-add-and-configure-products-in-the-stripe-dashboard-for-an-online-store-ayqt2WDSr.m3u8',
+    dash_url:
+      'https://d2c5owlt6rorc3.cloudfront.net/egghead-add-and-configure-products-in-the-stripe-dashboard-for-an-online-store-ayqt2WDSr/dash/egghead-add-and-configure-products-in-the-stripe-dashboard-for-an-online-store-ayqt2WDSr.mpd',
+  },
+  code: {
+    label: 'Code on GitHub',
+    github: {
+      repo: 'space-jelly-store-workshop',
+      user: 'colbyfayock',
+      branch:
+        'main/lessons/03%20-%20Add%20and%20Configure%20Products%20in%20the%20Stripe%20Dashboard%20for%20an%20Online%20Store',
+    },
+  },
+}
+
+Part of any ecommerce store starts with what you're trying to sell: the products.
+
+Stripe has a lot of services to give you flexibility as a store manager and that starts with a management tool right in it's dashboard to add and manage the products of your store.
+
+## Getting Started
+
+For lesson 3, we'll be getting ourselves familiar with the Stripe dashboard and setting up our first products inside of Stripe.
+
+We'll learn where we can find the product management page and actually add new products to Stripe. We'll then configure those products with the same details we used in [Lesson 02](add-and-style-a-grid-of-products-with-images-in-a-next-js-react-app) including the images and title.
+
+## Objectives
+
+- Locate Products in Stripe dashboard
+- Walk through adding new products
+- Find images from local lesson directory to add to products
+- Identify important product attributes for application
+
+## Exercises
+
+> 👋 **Hey! Quick Note**
+>
+> For this lesson, we'll be working inside of the Stripe dashboard. There will be no code changes for these exercises. If you haven't already created a Stripe account, now is the time to get that set up.
+
+### 1. Familiarize yourself with the Stripe dashboard and find the product management section
+
+If this is your first time browsing around the Stripe dashboard, there's a lot to see!
+
+Stripe is a powerful service that allows us to manage payments and the purchase details that go along with those payments including what products they bought and how much they cost.
+
+Take some time to look around the Stripe dashboard, but particularly find the Products section which we'll use in our next exercise to add our products.
+
+#### Where you should be looking
+
+- [Stripe Dashboard](https://dashboard.stripe.com/dashboard) (dashboard.stripe.com)
+
+### 2. Create your first products inside of Stripe
+
+Now that we're familiar with our Stripe dashboard, we want to get started creating our products.
+
+Inside of the products dashboard, we can add a new product which includes a few required fields including a Name and a Price.
+
+We can use the same product titles that we used in Lesson 2 when adding our products to our app.
+
+For the prices, we have a few options. We can customize our pricing model whether that includes a recurring fee or volume pricing, but for our walkthrough, we're going to stick with the Standard model with a One time payment.
+
+Create a new product for each product in the app.
+
+> 👋 **Hey! Quick Note**
+>
+> If you want to continue following along with the same 3 products I'm using in this walkthrough, you can use the following prices:
+>
+> | Product Title        | Product Price |
+> | -------------------- | ------------- |
+> | Space Jelly Tshirt   | $20.00        |
+> | Space Jelly Stickers | $10.00        |
+> | Space Jelly Combo    | $25.00        |
+
+#### Where you should be looking
+
+- [Stripe Dashboard - Products](https://dashboard.stripe.com/products) (dashboard.stripe.com)
+
+#### Resources
+
+- [How to create products and prices](https://support.stripe.com/questions/how-to-create-products-and-prices) (support.stripe.com)
+
+### 3. Customize the products with images
+
+While product images are optional for Stripe, adding them is helpful for providing a better checkout experience for our customers. Particular, when someone proceeds to purchase the products, Stripe will use the product images as a thumbnail so our customers can understand through the whole process what exactly they're going to purchase.
+
+Use the same images from Lesson 2 to add a picture to each product in Stripe.
+
+### 4. Understand what product identifiers we'll need for later
+
+At this point we should have all of our products set up and get ready to go including the product title and an image so customers know what they're purchasing.
+
+After creating each product though, you may have noticed that you immediately get unique identifiers for different parts of the product including an overall product ID but also an API ID for each price.
+
+You can think of this like you have a product, but each product has a different variation. If I'm selling tickets to a concert that have differnet pricing points, I might use two different prices to distinguish between a cheaper option and more expensive option.
+
+While we aren't currently using these IDs in our app, we'll use the API ID to let Stripe know exactly what product our customers are purchasing in future lessons.
+
+#### Where you should be looking
+
+- [Stripe Dashboard - Products](https://dashboard.stripe.com/products) (dashboard.stripe.com)
+
+import ResourceLayout from 'components/pages/projects/create-an-ecommerce-store-with-next-js-and-stripe-checkout/layouts/resource'
+
+export const Sidebar = () => <div />
+
+export default ({meta, children}) => (
+  <ResourceLayout meta={meta} sidebar={<Sidebar />}>
+    {children}
+  </ResourceLayout>
+)
